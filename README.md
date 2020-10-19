@@ -1,7 +1,15 @@
 # cloud-computing
 Cloud computing project. Authors: Juliusz Neuman Arkadiusz Rybski
 
-## Przygotowanie środowiska (Linux)
+## Wstęp
+
+Projekt ma na celu przeprowadzenie obliczeń numerycznych na klastrze AWS.
+
+## Zagadnienie
+
+Rozważanym zagadnieniem będzie transfer ciepła w [zadaniu numerycznym KGOF z 69. OF](http://www.kgof.edu.pl/archiwum/69/of69-1-2.pdf).
+
+## Przygotowanie środowiska wirtualnego (Linux)
 
 * Należy pobrać pythona _sudo apt install python3.8_.
 * Należy pobrać pip _sudo apt-get install python3-pip_.

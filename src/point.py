@@ -9,7 +9,7 @@ class point:
     density_val = 9000  # Gęstość
     specific_heat_val = 380  # Ciepło właściwe
 
-    def __init__(self, value: float = 100):
+    def __init__(self, value: float):
         """Inicjalizacja punktu"""
 
         self.backward_value = None  # Wartość temperatury w poprzednim punkcie

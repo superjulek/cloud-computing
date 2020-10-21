@@ -11,6 +11,17 @@ description will be pubslished soon...
 
 ## Installation (Linux)
 
+In order to use this project, following tools are required:
+* [python](https://www.python.org/)
+* [pip packache](https://packages.debian.org/stable/python-pip)
+...
+
+All dependencies could be installed followin fruther instuctions.
+Installing python, pip package.
+```bash
+sudo apt install python3.8
+sudo apt-get install python3-pip
+```
 
 * Należy pobrać pythona _sudo apt install python3.8_.
 * Należy pobrać pip _sudo apt-get install python3-pip_.

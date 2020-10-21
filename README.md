@@ -10,29 +10,55 @@ The idea comes from the Olympic problem, published [here](http://www.kgof.edu.pl
 description will be pubslished soon...
 
 ## Installation (Linux)
+Downloading files
+```bash
+git clone https://github.com/superjulek/cloud-computing 
+cd cloud-computing
+```
 
 In order to use this project, following tools are required:
 * [python](https://www.python.org/)
 * [pip packache](https://packages.debian.org/stable/python-pip)
-...
+* [pip-tools](https://pypi.org/project/pip-tools/1.8.0/)
+</br>...
 
-All dependencies could be installed followin fruther instuctions.
+All dependencies could be installed followin fruther instuctions. </br>
 Installing python, pip package.
 ```bash
 sudo apt install python3.8
 sudo apt-get install python3-pip
 ```
-
-* Należy pobrać pythona _sudo apt install python3.8_.
-* Należy pobrać pip _sudo apt-get install python3-pip_.
-* Należy pobrać narzędzie do wirtualnych środowisk _python3.8 -m pip install --user virtualenv_.
-* Należy w wybranej lokalizacji zainstalować witualne środowisko pythona: _python3.8 -m venv ./venv_.
-* Aktywować środowisko _source ./venv/bin/activate_.
-* Pobrać narzędzia _pip install pip-tools_.
-* Przejść do katalogu z projektem i skompilować zależności _pip-compile requirements.in_.
-* Przy następnych kompilacjach można użyć tylko _pip-compile_.
-* Zsynchronizować zależności _pip-sync requirements.txt_.
-* Środowisko można dezaktywować _deactivate_.
+Getting and installing virutalenv
+```bash
+python3.8 -m pip install --user virtualenv
+python3.8 -m venv PATH/TO/CHOSEN/LOCATION/venv
+```
+Activate virtual environment
+```
+bash
+PATH/TO/CHOSEN/LOCATION/venv/bin/activate
+```
+Dowloading pip-tools
+```
+bash
+pip install pip-tools
+```
+Getting needed libraries for python scripts.
+```
+bash
+pip-compile requirements.in
+pip-syc requirements.txt
+```
+For further compiling it is posiible to use:
+```
+bash
+pip-compile
+````
+Deactivate virutal environment
+```
+bash
+deactivate
+```
 
 ## Preparing Pyspark
 

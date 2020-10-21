@@ -1,7 +1,7 @@
 """Plik zawierający klasę punktu siatki i obliczeń na nim"""
 
 
-class point():
+class point:
     """Klasa punktu siatki"""
 
     # Stałe dla wszystkich punktów - póki co tutaj
@@ -9,12 +9,15 @@ class point():
     density_val = 9000  # Gęstość
     specific_heat_val = 380  # Ciepło właściwe
 
-    def __init__(self, value: float):
+    def __init__(self, value: float = 100):
         """Inicjalizacja punktu"""
 
         self.backward_value = None  # Wartość temperatury w poprzednim punkcie
         self.value = value  # Wartość temperatury w punkcie
         self.forward_value = None  # Wartość temperatury w następnym punkcie
+
+    def __str__(self):
+        return ("Temperatue at point %.2lf" %self.value)
 
     def calculate(self, time_delta: float, distance_delta: float) -> None:
         """Wykonaj obliczenia dla punktu"""

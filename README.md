@@ -1,15 +1,16 @@
 # cloud-computing
-Cloud computing project. Authors: Juliusz Neuman Arkadiusz Rybski
+Cloud computing project. Authors: [Juliusz Neuman](https://github.com/superjulek) [Arkadiusz Rybski](https://github.com/arybs)
 
-## Wstęp
+## Introduction
 
-Projekt ma na celu przeprowadzenie obliczeń numerycznych na klastrze AWS.
+Project is focussing o using AWS clusters to perform numerical computation.
 
-## Zagadnienie
+## Problem
+The idea comes from the Olympic problem, published [here](http://www.kgof.edu.pl/archiwum/69/of69-1-2.pdf). 
+description will be pubslished soon...
 
-Rozważanym zagadnieniem będzie transfer ciepła w [zadaniu numerycznym KGOF z 69. OF](http://www.kgof.edu.pl/archiwum/69/of69-1-2.pdf).
+## Installation (Linux)
 
-## Przygotowanie środowiska wirtualnego (Linux)
 
 * Należy pobrać pythona _sudo apt install python3.8_.
 * Należy pobrać pip _sudo apt-get install python3-pip_.
@@ -22,6 +23,6 @@ Rozważanym zagadnieniem będzie transfer ciepła w [zadaniu numerycznym KGOF z 
 * Zsynchronizować zależności _pip-sync requirements.txt_.
 * Środowisko można dezaktywować _deactivate_.
 
-## Przygotowanie pysparka
+## Preparing Pyspark
 
 * TBD

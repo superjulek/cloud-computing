@@ -5,7 +5,7 @@ from typing import List
 from point import point
 
 
-class mesh():
+class mesh:
 
     def __init__(self, size: float, element_num: int, tempL: float, tempR: float):
         self.size = size

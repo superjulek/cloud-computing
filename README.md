@@ -17,6 +17,11 @@ Rozważanym zagadnieniem będzie transfer ciepła w [zadaniu numerycznym KGOF z 
 * Należy w wybranej lokalizacji zainstalować witualne środowisko pythona: _python3.8 -m venv ./venv_.
 * Aktywować środowisko _source ./venv/bin/activate_.
 * Pobrać narzędzia _pip install pip-tools_.
-* Przejść do katalogu z projektem i skompilować zależności _pip-compile_.
+* Przejść do katalogu z projektem i skompilować zależności _pip-compile requirements.in_.
+* Przy następnych kompilacjach można użyć tylko _pip-compile_.
 * Zsynchronizować zależności _pip-sync requirements.txt_.
 * Środowisko można dezaktywować _deactivate_.
+
+## Przygotowanie pysparka
+
+* TBD

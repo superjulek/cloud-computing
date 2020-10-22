@@ -34,29 +34,24 @@ python3.8 -m pip install --user virtualenv
 python3.8 -m venv PATH/TO/CHOSEN/LOCATION/venv
 ```
 Activate virtual environment
-```
-bash
+```bash
 PATH/TO/CHOSEN/LOCATION/venv/bin/activate
 ```
 Dowloading pip-tools
-```
-bash
+```bash
 pip install pip-tools
 ```
 Getting needed libraries for python scripts.
-```
-bash
+```bash
 pip-compile requirements.in
 pip-syc requirements.txt
 ```
 For further compiling it is posiible to use:
-```
-bash
+```bash
 pip-compile
-````
-Deactivate virutal environment
 ```
-bash
+Deactivate virutal environment
+```bash
 deactivate
 ```
 

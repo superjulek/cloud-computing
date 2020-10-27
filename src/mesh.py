@@ -2,6 +2,8 @@
 
 from typing import List
 
+import pyspark
+
 from point import point
 
 
@@ -25,9 +27,8 @@ class mesh:
 
     def __repr__(self):
         for point in self.points:
-            print ("%.0f" % point.value)
+            print("%.0f" % point.value)
         return "Jestem siatką"
-        
 
     def update_mesh(self):
         """Przepisz dane punktów do sąsiednich punktów"""
@@ -45,9 +46,19 @@ class mesh:
         self.points[-1].forward_value = self.points[-1].value
         self.points[-2].forward_value = self.points[-1].value
 
-    def step_mesh(self, time_delta: float):
+    def step_mesh(self, time_delta: float, context: pyspark.SparkContext):
         """Dokonaj obliczenia dla punktów siatki"""
 
-        # TU TRZEBA RÓWNOLEGLIĆ
-        for point in self.points:
-            point.calculate(time_delta, self.distance_delta)
+        local_distance_delta = self.distance_delta
+        rdd = context.parallelize(self.points).map(lambda point: point.calculate(time_delta, local_distance_delta))
+
+        # TODO: wydaje mi się, że to rozwiązanie jest dość wolne...
+        i = 0
+        for point in rdd.collect():
+            self.points[i] = point
+            i += 1
+
+#        # TU TRZEBA RÓWNOLEGLIĆ
+#        for point in self.points:
+#            point.calculate(time_delta, self.distance_delta)
+

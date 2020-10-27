@@ -25,4 +25,6 @@ class point:
         self.value += time_delta * self.lambda_val / \
             (distance_delta ** 2) / self.density_val / self.specific_heat_val * \
             (self.backward_value - 2 * self.value + self.forward_value)
+        # TODO: taki quirk żeby działało map na tym
+        return self
 

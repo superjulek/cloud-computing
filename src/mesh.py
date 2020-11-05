@@ -30,6 +30,12 @@ class mesh:
             print("%.0f" % point.value)
         return "Jestem siatką"
 
+    def data_return(self):
+        data=[]
+        for point in self.points:
+            data.append(point.value)
+        return data
+
     def update_mesh(self):
         """Przepisz dane punktów do sąsiednich punktów"""
 

@@ -5,11 +5,12 @@ from typing import List
 import pyspark
 
 from point import point
+from config import initials
 
 
 class mesh:
 
-    def __init__(self, size: float, element_num: int, tempL: float, tempR: float):
+    def __init__(self, size: float, element_num: int):
         self.size = size
         self.element_num = element_num
         self.points = []
@@ -18,9 +19,9 @@ class mesh:
         # Uzupełnij punkty od lewej do prawej
         for i in range(0, element_num):
             if i < element_num / 2:
-                self.points.append(point(tempL))
+                self.points.append(point(initials.temp_left))
             else:
-                self.points.append(point(tempR))
+                self.points.append(point(initials.temp_right))
 
         # Od razu zaktualizuj by wypełnić pola przed i za puktów
         self.update_mesh()
@@ -46,7 +47,7 @@ class mesh:
         self.points[-1].forward_value = self.points[-1].value
         self.points[-2].forward_value = self.points[-1].value
 
-    def step_mesh(self, time_delta: float, context: pyspark.SparkContext):
+    def step_mesh(self, time_delta: float, context: pyspark.SparkContext) -> float:
         """Dokonaj obliczenia dla punktów siatki"""
 
         local_distance_delta = self.distance_delta
@@ -57,8 +58,5 @@ class mesh:
         for point in rdd.collect():
             self.points[i] = point
             i += 1
-
-#        # TU TRZEBA RÓWNOLEGLIĆ
-#        for point in self.points:
-#            point.calculate(time_delta, self.distance_delta)
-
+        
+        return abs(self.points[0].value-self.points[i-1].value)

@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python3.8 ./src/main.py
+# Pass arguments to python program
+python3.8 ./src/main.py "$@"

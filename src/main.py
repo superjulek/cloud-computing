@@ -1,35 +1,36 @@
-"""Główny plik programu"""
+"""Main program"""
 
-import pyspark
 import sys
+import argparse
+import config
 
-from mesh import mesh
-
+from run import run
 
 def main():
     print ("Witaj w świecie klałd kopjutingu")
+    parser = argparse.ArgumentParser(description='Get simulation values.')
+    parser.add_argument('--temp_left', type=int, dest='temp_left', required=False)
+    parser.add_argument('--temp_right', type=int, dest='temp_right', required=False)
+    parser.add_argument('--expected_diff', type=int, dest='expected_diff', required=False)
+    parser.add_argument('--time_delta', type=int, dest='time_delta', required=False)
+    parser.add_argument('--space_delta', type=int, dest='space_delta', required=False)
+    parser.add_argument('--run_check', action='store_true', required=False)
+    args = parser.parse_args()
+    
+    if args.temp_left is not None:
+        config.initials.temp_left = args.temp_left
+    if args.temp_right is not None:
+        config.initials.temp_right = args.temp_right
+    if args.expected_diff is not None:
+        config.simulation.expected_diff = args.expected_diff
+    if args.time_delta is not None:
+        config.stepping.time_delta = args.time_delta
+    if args.space_delta is not None:
+        config.stepping.space_delta = args.space_delta
+    if args.run_check:
+        config.simulation.run_check = True
 
-    # Kontekst sparka
-    context = pyspark.SparkContext('local[*]')
-    context.addPyFile("src/point.py")
-
-    my_mesh = mesh(1, 200, 300, 900)
-    for step in range(100):
-        my_mesh.step_mesh(0.1, context)
-        my_mesh.update_mesh()
-    print(my_mesh)
-    sys.exit()
-
+    run()
 
 if __name__ == "__main__":
     main()
-
-# vvv ten syf zostawiam do wglądu
-
-sc = pyspark.SparkContext('local[*]')
-
-txt = sc.textFile('file:////usr/share/doc/python3.8/copyright')
-print(txt.count())
-
-python_lines = txt.filter(lambda line: 'python' in line.lower())
-print(python_lines.count())

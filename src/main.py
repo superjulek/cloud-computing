@@ -6,12 +6,6 @@ import config
 
 from run import run
 
-TempL=300
-TempR=900
-size=1
-elem_num=200
-max_iter=int(5e04)
-time_delta=0.1
 
 def main():
     print ("Witaj w świecie klałd kopjutingu")

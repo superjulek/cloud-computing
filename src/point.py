@@ -1,13 +1,9 @@
 """Plik zawierający klasę punktu siatki i obliczeń na nim"""
 
+from config import constants
 
 class point:
     """Klasa punktu siatki"""
-
-    # Stałe dla wszystkich punktów - póki co tutaj
-    lambda_val = 380  # Wartość lambdy
-    density_val = 9000  # Gęstość
-    specific_heat_val = 380  # Ciepło właściwe
 
     def __init__(self, value: float):
         """Inicjalizacja punktu"""
@@ -22,8 +18,8 @@ class point:
     def calculate(self, time_delta: float, distance_delta: float) -> None:
         """Wykonaj obliczenia dla punktu"""
 
-        self.value += time_delta * self.lambda_val / \
-            (distance_delta ** 2) / self.density_val / self.specific_heat_val * \
+        self.value += time_delta * constants.lambda_val / \
+            (distance_delta ** 2) / constants.density_val / constants.specific_heat_val * \
             (self.backward_value - 2 * self.value + self.forward_value)
         # TODO: taki quirk żeby działało map na tym
         return self

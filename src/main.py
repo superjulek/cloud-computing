@@ -1,14 +1,10 @@
-"""Główny plik programu"""
+"""Main program"""
 
-import pyspark
 import sys
-import numpy as np
-import matplotlib.pyplot as pyplot
-from matplotlib.animation import FuncAnimation
+import argparse
+import config
 
-from mesh import mesh
-from visualization import animation
-
+from run import run
 
 TempL=300
 TempR=900
@@ -19,40 +15,31 @@ time_delta=0.1
 
 def main():
     print ("Witaj w świecie klałd kopjutingu")
-
-    # Kontekst sparka
-    context = pyspark.SparkContext()
-    context.addPyFile("src/point.py")
-
-    my_mesh = mesh(size, elem_num, TempL, TempR)
-
-    data=[]
-    temp, _ = np.meshgrid(my_mesh.data_return(), my_mesh.data_return())
-    data.append(temp)
-    for step in range(max_iter):
-        my_mesh.step_mesh(time_delta, context)
-        my_mesh.update_mesh()
-        temp, _ = np.meshgrid(my_mesh.data_return(), my_mesh.data_return())
-        data.append(temp)
+    parser = argparse.ArgumentParser(description='Get simulation values.')
+    parser.add_argument('--temp_left', type=int, dest='temp_left', required=False)
+    parser.add_argument('--temp_right', type=int, dest='temp_right', required=False)
+    parser.add_argument('--expected_diff', type=int, dest='expected_diff', required=False)
+    parser.add_argument('--time_delta', type=int, dest='time_delta', required=False)
+    parser.add_argument('--space_delta', type=int, dest='space_delta', required=False)
+    parser.add_argument('--run_check', action='store_true', required=False)
+    args = parser.parse_args()
     
-    context.stop()
-    animation(data)
-    print(my_mesh)
-    sys.exit()
+    if args.temp_left is not None:
+        config.initials.temp_left = args.temp_left
+    if args.temp_right is not None:
+        config.initials.temp_right = args.temp_right
+    if args.expected_diff is not None:
+        config.simulation.expected_diff = args.expected_diff
+    if args.time_delta is not None:
+        config.stepping.time_delta = args.time_delta
+    if args.space_delta is not None:
+        config.stepping.space_delta = args.space_delta
+    if args.run_check:
+        config.simulation.run_check = True
 
+    run()
 
 
 
 if __name__ == "__main__":
     main()
-
-# vvv ten syf zostawiam do wglądu
-
-sc = pyspark.SparkContext()
-
-txt = sc.textFile('file:////usr/share/doc/python3.8/copyright')
-print(txt.count())
-
-python_lines = txt.filter(lambda line: 'python' in line.lower())
-print(python_lines.count())
-sc.stop()

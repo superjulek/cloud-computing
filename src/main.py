@@ -6,6 +6,7 @@ import config
 
 from run import run
 
+
 def main():
     print ("Witaj w świecie klałd kopjutingu")
     parser = argparse.ArgumentParser(description='Get simulation values.')
@@ -31,6 +32,8 @@ def main():
         config.simulation.run_check = True
 
     run()
+
+
 
 if __name__ == "__main__":
     main()

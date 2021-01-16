@@ -35,7 +35,7 @@ python3.8 -m venv PATH/TO/CHOSEN/LOCATION/venv
 ```
 Activate virtual environment
 ```bash
-PATH/TO/CHOSEN/LOCATION/venv/bin/activate
+source PATH/TO/CHOSEN/LOCATION/venv/bin/activate
 ```
 Dowloading pip-tools
 ```bash
@@ -44,7 +44,7 @@ pip install pip-tools
 Getting needed libraries for python scripts.
 ```bash
 pip-compile requirements.in
-pip-syc requirements.txt
+pip-sync requirements.txt
 ```
 For further compiling it is posiible to use:
 ```bash
